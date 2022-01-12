@@ -1,7 +1,6 @@
 const express = require('express');
-const path = require('path');
-
 const { ApolloServer } = require('apollo-server-express');
+const path = require('path');
 
 // import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
