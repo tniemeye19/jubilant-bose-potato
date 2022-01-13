@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ const SavedBooks = () => {
 
   const { loading, data } = useQuery(GET_ME);
   const [userData, setUserData] = useState(loading ? null : data?.me);
-
+  // eslint-disable-next-line 
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -38,11 +38,10 @@ const SavedBooks = () => {
     } catch (err) {
       console.error(err);
     }
-    removeBookId(bookId);
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (!userData) {
     return <h2>LOADING...</h2>;
   }
 
