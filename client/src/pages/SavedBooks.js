@@ -10,9 +10,10 @@ import { GET_ME } from '../utils/queries';
 const SavedBooks = () => {
 
   const { loading, data } = useQuery(GET_ME);
-  const [userData, setUserData] = useState(loading ? null : data?.me);
-  // eslint-disable-next-line 
+ // eslint-disable-next-line
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+
+    const [userData, setUserData] = useState(loading ? null : data?.me);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
