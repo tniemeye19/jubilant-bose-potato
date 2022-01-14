@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { getSavedBookIds } from '../utils/localStorage';
+import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
@@ -11,8 +11,12 @@ const SearchBooks = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   const [saveBook, { error }] = useMutation(SAVE_BOOK);
+
+  useEffect(() => {
+    return () => saveBookIds(savedBookIds);
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -56,11 +60,12 @@ const SearchBooks = () => {
     }
 
     try {
+
       // eslint-disable-next-line
       const { data } = await saveBook({
-        variables: { newBook: { ...bookToSave } },
+        variables: { bookData: { ...bookToSave }  },
       });
-
+      console.log(data);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
