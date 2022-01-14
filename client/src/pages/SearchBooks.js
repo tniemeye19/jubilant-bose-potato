@@ -63,7 +63,7 @@ const SearchBooks = () => {
 
       // eslint-disable-next-line
       const { data } = await saveBook({
-        variables: { bookData: { ...bookToSave }  },
+        variables: { newBook: { ...bookToSave }  },
       });
       console.log(data);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
