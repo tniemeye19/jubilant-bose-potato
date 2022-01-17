@@ -4,7 +4,7 @@
 
 The Book Search Engine allows a user to be able to signup/login and save the books that they choose. Each time they login, their books will be there waiting for them.
 
-See the deployed app ![here](https://quiet-bayou-84339.herokuapp.com/)!
+See the deployed app [here](https://quiet-bayou-84339.herokuapp.com/)
 
 ![Book Search Home Screenshot](https://github.com/tniemeye19/jubilant-bose-potato/blob/main/assets/jubilant-potato-home.png)
 
